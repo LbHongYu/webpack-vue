@@ -24,8 +24,7 @@ const promise = new Promise((reslove, reject) => {
 //   }
 // }
 
-console.log(helloWorld, App);
-Vue.component('hello-world', helloWorld);
+Vue.component('hello-World', helloWorld);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

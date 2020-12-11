@@ -32,5 +32,20 @@
   6. 添加 `node-sass`(4.14.1) `sass-loader`(7.3.1) 用于编译 scss 文件
 
 
+2020/12/09
+  1. 添加 `file-loader` `url-loader` 解析图片 (如何把图片路径直接写在<img>)
+
+  2. 安装  `webpack-dev-server` 并使用 HMR
+      使用 `webpack@4.15.1` 在热加载时不能载入通过 import 方式引入的模块 (moduleId)
+
+      报错 `Cannot read property 'call' of undefined at __webpack_require__ `
+      `modules[moduleId].call(module.exports, ...);`
+
+      `moduleId` 没有加载到 `modules` 中
+
+      处理： 使用 `webpack@4.43.0` 解决了这个问题
+
+
+
 
 
