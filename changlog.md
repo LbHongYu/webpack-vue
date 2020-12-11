@@ -38,12 +38,17 @@
   2. 安装  `webpack-dev-server` 并使用 HMR
       使用 `webpack@4.15.1` 在热加载时不能载入通过 import 方式引入的模块 (moduleId)
 
-      报错 `Cannot read property 'call' of undefined at __webpack_require__ `
-      `modules[moduleId].call(module.exports, ...);`
-
-      `moduleId` 没有加载到 `modules` 中
+      - 报错 `Cannot read property 'call' of undefined at __webpack_require__ `
+      - `modules[moduleId].call(module.exports, ...);`
+      - `moduleId` 没有加载到 `modules` 中
 
       处理： 使用 `webpack@4.43.0` 解决了这个问题
+
+2020/12/10
+  1. 添加 webpack.prod.js, 用于打包生产环境
+      添加 `MiniCssExtractPlugin` (feat: 优化)
+      给 output 文件名添加 hash, CSS 文件名添加 contenthash, 图片的文件名添加 hash
+  2.
 
 
 
