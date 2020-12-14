@@ -48,7 +48,8 @@
   1. 添加 webpack.prod.js, 用于打包生产环境
       添加 `MiniCssExtractPlugin` (feat: 优化)
       给 output 文件名添加 hash, CSS 文件名添加 contenthash, 图片的文件名添加 hash
-  2.
+  2. 压缩 HTML
+     HtmlWebpackPlugin 添加 minify 配置选项
 
 
 

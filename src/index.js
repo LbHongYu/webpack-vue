@@ -3,6 +3,7 @@ import App from './App.vue';
 import helloWorld from '@/components/hello-world.vue';
 import 'core-js/stable';
 
+
 const promise = new Promise((reslove, reject) => {
   setTimeout(() => {
     console.log('resloveFn Done');

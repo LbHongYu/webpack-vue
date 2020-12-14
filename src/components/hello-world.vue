@@ -36,6 +36,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+  @import '~@/assets/scss/reset.scss';
   .hello-world {
     color: #ADFADF;
   }
