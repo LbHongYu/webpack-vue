@@ -1,6 +1,7 @@
 <template>
   <div class="hello-world">
     <h3>hello-world</h3>
+    <p class="content">hello-world contentcontentcontentcontentcontentcontentcontent</p>
     <America/>
   </div>
 </template>
@@ -39,5 +40,11 @@ export default {
   @import '~@/assets/scss/reset.scss';
   .hello-world {
     color: #ADFADF;
+    display: flex;
+    // some comment
+    .content {
+      flex: 1;
+      transform: translateX(10px);
+    }
   }
 </style>

@@ -46,10 +46,19 @@
 
 2020/12/10
   1. 添加 webpack.prod.js, 用于打包生产环境
-      添加 `MiniCssExtractPlugin` (feat: 优化)
+      添加 `MiniCssExtractPlugin` (feat: 优化,官网建议在 webpack 4中使用 mini-css-extract-plugin))
+
       给 output 文件名添加 hash, CSS 文件名添加 contenthash, 图片的文件名添加 hash
+
   2. 压缩 HTML
      HtmlWebpackPlugin 添加 minify 配置选项
+
+
+2020/12/14
+ 1. 添加 CSS 压缩[`CssMinimizerWebpackPlugin`](https://github.com/webpack-contrib/css-minimizer-webpack-plugin) CssMinimizerWebpackPlugin 在 source map 和 asset 使用查询字符串上会更加精确，且允许缓存和并行处理
+
+ 2. 安装 postcss, autoprefixer，PostCSS 插件，用于解析 CSS 并使用 Can I Use 中的值向 CSS 规则添加供应商前缀
+
 
 
 
