@@ -59,6 +59,19 @@
 
  2. 安装 postcss, autoprefixer，PostCSS 插件，用于解析 CSS 并使用 Can I Use 中的值向 CSS 规则添加供应商前缀
 
+2020/12/15
+  1. TODO: 内联资源
+  2. 添加 source-map,
+    * eval:    使用 eval 包裹模块代码的 source map， 不产生.map⽂件
+    * cheap: 不包含列信息
+    * inline:  将.map作为 DataURI 嵌⼊，不单独⽣成.map⽂文件
+    * module: 包含 loader 的 sourcemap
+
+2020/01/04
+  1. 添加 SplitChunksPlugin
+  2. 添加 TerserWebpackPlugin
+
+
 
 
 

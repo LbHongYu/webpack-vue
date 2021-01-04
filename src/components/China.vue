@@ -1,17 +1,17 @@
 <template>
-  <div class="America">
-    <h3>America</h3>
+  <div class="China">
+    <h3>China</h3>
     <img :src="image">
   </div>
 </template>
 <script>
 import image from '../assets/image/bless.jpeg';
-import { divide } from '@/utils/arithmetic.js';
+import { add } from '@/utils/arithmetic.js';
 
-divide();
+add();
 
 export default {
-  name: 'America',
+  name: 'China',
 
   props: {},
 
@@ -28,7 +28,7 @@ export default {
   },
 
   created () {
-    console.log('America');
+    console.log('China');
 
   },
 

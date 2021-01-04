@@ -1,13 +1,15 @@
 <template>
   <div class="hello-world">
-    <h3>hello-world</h3>
-    <p class="content">hello-world contentcontentcontentcontentcontentcontentcontent</p>
+    <br/>
     <America/>
+    <br/>
+    <China/>
   </div>
 </template>
 
 <script>
 import America from './America.vue'
+import China from './China.vue'
 
 export default {
   name: 'hello-world',
@@ -23,12 +25,12 @@ export default {
   watch: {},
 
   components: {
-    America
+    America,
+    China
   },
 
   created () {
     console.log('hello-world');
-
   },
 
   methods: {
@@ -41,7 +43,8 @@ export default {
   .hello-world {
     color: #ADFADF;
     display: flex;
-    // some comment
+    flex-flow: column;
+    // some comment some comment some comment
     .content {
       flex: 1;
       transform: translateX(10px);
