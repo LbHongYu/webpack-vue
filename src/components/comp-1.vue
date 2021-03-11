@@ -1,23 +1,21 @@
 <template>
   <div class="China">
-    <h3>China</h3>
-    <img :src="image">
+    {{label}}
   </div>
 </template>
 <script>
-import image from '../assets/image/bless.jpeg';
 import { add } from '@/utils/arithmetic.js';
 
-add();
-
 export default {
-  name: 'China',
+  name: 'comp-1',
 
-  props: {},
+  props: {
+    customLabel: String
+  },
 
   data () {
     return {
-      image: image
+      label: 'comp-1'
     };
   },
 
@@ -28,7 +26,7 @@ export default {
   },
 
   created () {
-    console.log('China');
+    // console.log('China');
 
   },
 
