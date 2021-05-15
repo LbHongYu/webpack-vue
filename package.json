@@ -5,8 +5,16 @@
   "main": "index.js",
   "repository": "https://github.com/LbHongYu/webpack-vue",
   "scripts": {
-    "dev": "webpack serve  --config ./build/webpack.base.js",
-    "build": "webpack --config ./build/webpack.base.js"
+    "trace": "node --trace-deprecation node_modules/webpack/bin/webpack.js serve  --config ./build/webpack.base.js",
+    "inspect": "node --inspect-brk=1616 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.base.js",
+    "inspect_watch": "node --inspect-brk=1617 ./node_modules/webpack/bin/webpack.js --progress --watch --config  ./build/webpack.base.js",
+
+    "dev-middleware": "node --inspect-brk=1618 ./build/server.js",
+    "dev_middleware": "node ./build/server.js",
+    "watch": "webpack --watch --progress --config  ./build/webpack.base.js",
+    "dev": "webpack-dev-server --progress --config  ./build/webpack.base.js",
+    "build": "webpack --progress --config ./build/webpack.prod.js",
+    "d_build": "webpack --progress --config ./build/webpack.unglify_prod.js"
   },
   "keywords": [],
   "author": "",
@@ -28,14 +36,17 @@
     "postcss-loader": "^4.1.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.3.1",
+    "svg-loader": "0.0.2",
     "terser-webpack-plugin": "^4.0.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
     "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
     "core-js": "^3.8.1",

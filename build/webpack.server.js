@@ -1,4 +1,12 @@
 
+
+/**
+  * webpack.server.js
+  *
+  * webpack-dev-middleware + webpack-hot-middleware + HotModuleReplacementPlugin
+  * 实现本地编译热更新
+  *
+*/
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -6,10 +14,12 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports =  {
-  // watch: true,
-  entry: {
-    index: path.resolve(__dirname, '../src/index.js'),
-  },
+  // entry 必须使用数组的方式引入 webpack-hot-middleware/client.js，否则不能实现热更新效果
+  // 官方也是使用数组的方式来引入，暂时没有去了解为啥。。。。
+  entry: [
+    path.resolve(__dirname, '../src/index.js'),
+    'webpack-hot-middleware/client.js'
+  ],
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, '../webpack-vue'),
@@ -41,12 +51,6 @@ module.exports =  {
   },
   mode: 'development',
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './webpack-vue',
-    // hot: true，启用 webpack 的 Hot Module Replacement 功能，
-    // 也可以在 plugins 数组中引入 HotModuleReplacementPlugin
-    // hot: true
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),

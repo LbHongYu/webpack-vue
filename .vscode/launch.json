@@ -1,0 +1,29 @@
+{
+  "debug.javascript.autoAttachFilter": "always",
+  "configurations": [
+    {
+      "name": "webpack_server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "inspect"],
+      "type": "node",
+      "request": "launch",
+      "port": 1616
+    },
+    {
+      "name": "webpack_watch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "inspect_watch"],
+      "type": "node",
+      "request": "launch",
+      "port": 1617
+    },
+    {
+      "name": "webpack_dev_middleware",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev-middleware"],
+      "type": "node",
+      "request": "launch",
+      "port": 1618
+    }
+  ]
+}

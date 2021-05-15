@@ -5,6 +5,12 @@
 </template>
 
 <script>
+import {
+  add,
+  subtract,
+  multiply,
+  divide
+} from '@/utils/arithmetic.js'
 export default {
   name: 'app',
   created () {

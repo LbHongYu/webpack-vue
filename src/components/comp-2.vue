@@ -7,7 +7,7 @@
 import { add } from '@/utils/arithmetic.js';
 
 export default {
-  name: 'China',
+  name: 'comp-2',
 
   props: {
     customLabel: String
@@ -27,7 +27,7 @@ export default {
 
   created () {
     // console.log('China');
-
+    this.label = this.$props.customLabel ? this.$props.customLabel : 'comp-2'
   },
 
   methods: {

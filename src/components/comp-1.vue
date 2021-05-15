@@ -27,7 +27,7 @@ export default {
 
   created () {
     // console.log('China');
-
+    this.label = this.$props.customLabel ? this.$props.customLabel : 'comp-1'
   },
 
   methods: {

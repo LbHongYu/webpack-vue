@@ -1069,6 +1069,7 @@ function defineReactive$$1 (
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val;
       if (Dep.target) {
+        // console.log('computed property', key, val);
         dep.depend();
         if (childOb) {
           childOb.dep.depend();
@@ -3959,7 +3960,6 @@ function lifecycleMixin (Vue) {
     vm._vnode = vnode;
     // Vue.prototype.__patch__ is injected in entry points
     // based on the rendering backend used.
-
     if (!prevVnode) {
       // initial render
       vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
@@ -4436,24 +4436,6 @@ let uid$2 = 0;
  * This is used for both the $watch() api and directives.
  */
 class Watcher {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   constructor (
     vm,
     expOrFn,
@@ -4485,6 +4467,7 @@ class Watcher {
     this.depIds = new _Set();
     this.newDepIds = new _Set();
     this.expression = expOrFn.toString();
+
     // parse expression for getter
     if (typeof expOrFn === 'function') {
       this.getter = expOrFn;
@@ -10280,7 +10263,6 @@ function processComponent (el) {
 }
 
 function processAttrs (el) {
-  debugger;
   const list = el.attrsList;
   let i, l, name, rawName, value, modifiers, syncGen, isDynamic;
   for (i = 0, l = list.length; i < l; i++) {

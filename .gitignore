@@ -2,3 +2,4 @@ node_modules
 dist
 webpack-vue
 src/vueLib
+node_modules

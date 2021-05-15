@@ -7,8 +7,6 @@ import 'core-js/stable';
 new Vue({
   router,
   render: h => {
-    console.log(App);
-
     return h(App);
   }
 }).$mount('#app');
