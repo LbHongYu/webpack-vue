@@ -45,7 +45,7 @@ module.exports =  {
     contentBase: './webpack-vue',
     // hot: true，启用 webpack 的 Hot Module Replacement 功能，
     // 也可以在 plugins 数组中引入 HotModuleReplacementPlugin
-    // hot: true
+    hot: true
   },
   plugins: [
     new CleanWebpackPlugin(),

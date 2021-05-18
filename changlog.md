@@ -14,7 +14,7 @@
   3. 添加打包配置文件夹 `build`，添加 `base`、`dev`、`prod` 等文件
     添加 `webpack.ProgressPlugin` 用于显示编译过程
     添加 `clean-webpack-plugin` 用于清理上一次的编译结果
-    添加 `html-webpack-plugin`，和html template `pulic/template.html`， 用于将打包结果自动插入到html
+    添加 `html-webpack-plugin`，和 html template `pulic/template.html`， 用于将打包结果自动插入到html
 
 2020/12/08
   1. 添加 `babel-loader` `@babel/core` `@babel/preset-env`，用于转换 ES6 代码为浏览器能够运行的代码

@@ -28,6 +28,10 @@ let routeObj = {
       path: '/Japan',
       name: 'Japan',
       component: () => import('@/views/country/Japan.vue'),
+    }, {
+      path: '/web-rtc',
+      name: 'WebRTC',
+      component: () => import('@/views/web-rtc/index.vue'),
     }
   ]
 }]

@@ -5,14 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/LbHongYu/webpack-vue",
   "scripts": {
-    "trace": "node --trace-deprecation node_modules/webpack/bin/webpack.js serve  --config ./build/webpack.base.js",
-    "inspect": "node --inspect-brk=1616 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.base.js",
-    "inspect_watch": "node --inspect-brk=1617 ./node_modules/webpack/bin/webpack.js --progress --watch --config  ./build/webpack.base.js",
-
+    "trace": "node --trace-deprecation node_modules/webpack/bin/webpack.js serve  --config ./build/webpack.dev.js",
+    "inspect": "node --inspect-brk=1616 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.dev.js",
+    "inspect_watch": "node --inspect-brk=1617 ./node_modules/webpack/bin/webpack.js --progress --watch --config  ./build/webpack.dev.js",
     "dev-middleware": "node --inspect-brk=1618 ./build/server.js",
     "dev_middleware": "node ./build/server.js",
-    "watch": "webpack --watch --progress --config  ./build/webpack.base.js",
-    "dev": "webpack-dev-server --progress --config  ./build/webpack.base.js",
+    "watch": "webpack --watch --progress --config  ./build/webpack.dev.js",
+    "dev": "webpack-dev-server --progress --config  ./build/webpack.dev.js",
     "build": "webpack --progress --config ./build/webpack.prod.js",
     "d_build": "webpack --progress --config ./build/webpack.unglify_prod.js"
   },
@@ -21,7 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.12.7",
     "autoprefixer": "^10.1.0",
     "babel-loader": "^8.2.2",
@@ -49,7 +48,8 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
-    "core-js": "^3.8.1",
+    "@babel/runtime": "^7.14.0",
+    "element-ui": "^2.15.1",
     "vue": "^2.6.12"
   }
 }

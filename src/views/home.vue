@@ -4,6 +4,7 @@
       <li @click="routeTo('China')">China</li>
       <li @click="routeTo('America')">America</li>
       <li @click="routeTo('Japan')">Japan</li>
+      <li @click="routeTo('WebRTC')">WebRTC</li>
     </ul>
 
     <keep-alive :include="includeComp">
