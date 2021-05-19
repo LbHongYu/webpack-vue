@@ -53,6 +53,7 @@ module.exports =  {
   devtool: 'inline-source-map',
   plugins: [
     new CleanWebpackPlugin(),
+    new webpack.ProgressPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),

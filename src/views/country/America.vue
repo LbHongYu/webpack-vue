@@ -5,6 +5,7 @@
 </template>
 
 <script>
+var bbb = new Promise();
 
 export default {
   name: 'America',

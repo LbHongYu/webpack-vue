@@ -1,10 +1,12 @@
 <template>
   <div class="China">
     <h4>China</h4>
+    <img :src="img" alt=""/>
+    <img src="~assets/image/篮球.jpg" alt=""/>
     <!-- <p>{{count}}</p> -->
     <button @click="countUp">UP</button>
     <input type="text" v-model="iptValue"/>
-    <!-- <num-lab></num-lab> -->
+    <num-lab></num-lab>
     <num-la></num-la>
     <num-l></num-l>
   </div>
@@ -12,7 +14,13 @@
 
 <script>
 import img from '@/assets/image/篮球.jpg';
+import img1 from '@/assets/image/CodeCogsEqn (36).png';
+console.log(img, img1);
+
 // console.log(numLabel);
+var aaa = new Promise((resolve, reject) => {
+  resolve();
+});
 
 export default {
   name: 'China',
@@ -22,6 +30,7 @@ export default {
   },
   data () {
     return {
+      img: img,
       iptValue: '',
       dataPool: {
         count: 0
@@ -57,3 +66,17 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+// Chinan Style
+// Chinan Style
+// Chinan Style
+// Chinan Style
+.China {
+  h4 {
+    background: url(~assets/image/篮球.jpg);
+    background: cadetblue;
+    display: grid;
+    text-size-adjust: 100%;
+  }
+}
+</style>

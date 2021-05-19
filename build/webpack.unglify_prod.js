@@ -73,6 +73,7 @@ module.exports =  {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new webpack.ProgressPlugin(),
     new webpack.HashedModuleIdsPlugin({
       hashDigest: 'hex'
     }),
