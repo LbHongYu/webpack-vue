@@ -5,7 +5,9 @@
 </template>
 
 <script>
-
+var ccc = new Promise((resolve, reject) => {
+  resolve();
+});
 export default {
   name: 'Japan',
   props: {

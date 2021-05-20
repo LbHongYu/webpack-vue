@@ -18,7 +18,13 @@
 
 2020/12/08
   1. 添加 `babel-loader` `@babel/core` `@babel/preset-env`，用于转换 ES6 代码为浏览器能够运行的代码
-  2. 添加 `core.js@3`
+  2. 添加 `core.js@3`、`regenerator-runtime`
+
+    ```
+      // 如果是 "useBuiltIns": "usage" 就不需要手动引入
+      import "core-js/stable";
+      import "regenerator-runtime/runtime";
+    ```
   3. 添加 `.babelrc` 文件
   ```
   {
@@ -26,7 +32,7 @@
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": "usage",
+          "useBuiltIns": "entry", // 或者 'usage'
           "corejs": 3
         }
       ]
@@ -35,7 +41,8 @@
   ```
 
   NOTE:
-    `@babel/preset-env`的 `corejs` 配置默认为 `2.0` 使用了 core.js3+，需要指定 corejs 版本
+    `@babel/preset-env` 都支持`core-js@3`和`core-js@2`, 但是两个版本的区别较大。
+    配置默认为 `2.0`， 使用了 core-js@3，需要指定 core-js 版本
 
   3. <!--添加 `@babel/plugin-transform-runtime` `@babel/runtime`，引入 Babel runtime 作为一个独立模块，来避免重复引入 -->
      添加 .babelrc 文件设置 preset
@@ -155,10 +162,6 @@
     开发环境：`devtool: 'eval-cheap-source-map'`
     生产环境：`devtool: 'source-map'`
 
-2020/01/04
-  1. 添加 SplitChunksPlugin
-  2. 添加 TerserWebpackPlugin
-
 2020/05/14
   1. 通过 webpack-dev-server + HotModuleReplacementPlugin 和  webpackDevMiddleware + webpackHotMiddleware + HotModuleReplacementPlugin
      热编译和热更新
@@ -169,6 +172,13 @@
 2020/05/18
   1. 通过 .browserslistrc 文件指定 @babel/preset-env 需要支持的目标浏览器环境
   2. `stats: 'errors-only'` + `FriendlyErrorsWebpackPlugin` 优化控制台的打印信息
+
+2020/05/20
+  在生产环境的配置中添加 `CompressionPlugin`(用于压缩文件)、`TerserPlugin`(压缩 js)、`HardSourcePlugin` (为模块提供中间缓存)
+  添加 `cache-loader`(缓存)、`thread-loader`(多进程打包)
+
+
+
 
 
 

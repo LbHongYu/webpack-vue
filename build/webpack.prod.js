@@ -12,9 +12,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+var HardSourcePlugin = require('hard-source-webpack-plugin');
 
 module.exports =  {
   mode: 'production',
@@ -28,6 +31,7 @@ module.exports =  {
   },
 
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, '../webpack-vue'),
     /* NOTE: 使用了 NamedChunksPlugin 利用 hash 做缓存 */
     filename: '[name].js'
@@ -47,7 +51,7 @@ module.exports =  {
       {
         test: /\.js$/,
         exclude: /node_modules|vue.esm.browser.js/,
-        use: ['babel-loader']
+        use: ['cache-loader', 'thread-loader', 'babel-loader']
       }, {
         test: /\.s[ac]ss$/i,
         use: [
@@ -58,7 +62,7 @@ module.exports =  {
           {
             loader: 'style-resources-loader', // 如果使用了variables , mixins , functions 等功能，必须添加这个插件
             options: {
-                patterns: path.resolve(__dirname, '../src/assets/scss/file.scss') // 使用 variables , mixins , functions 等功能的文件
+              patterns: path.resolve(__dirname, '../src/assets/scss/file.scss') // 使用 variables , mixins , functions 等功能的文件
             }
           }
         ]
@@ -148,6 +152,10 @@ module.exports =  {
             },
           ],
         }
+      }),
+      // 压缩 js
+      new TerserPlugin({
+        exclude: /\/node_modules/,
       })
     ],
     splitChunks: {
@@ -175,7 +183,7 @@ module.exports =  {
   },
 
   plugins: [
-    new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsPlugin(),
     new CleanWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new webpack.HashedModuleIdsPlugin({
@@ -216,5 +224,30 @@ module.exports =  {
       chunkFilename: 'css/[name].[contenthash:8].css',
       ignoreOrder: true
     }),
+
+    new CompressionPlugin(),
+
+    new HardSourcePlugin({
+      cachePrune: {
+        // Caches younger than `maxAge` are not considered for deletion. They must
+        // be at least this (default: 2 days) old in milliseconds.
+        maxAge: 5 * 24 * 60 * 60 * 1000,
+        // All caches together must be larger than `sizeThreshold` before any
+        // caches will be deleted. Together they must be at least this
+        // (default: 50 MB) big in bytes.
+        sizeThreshold: 100 * 1024 * 1024
+      },
+    }),
+
+    new HardSourcePlugin.ExcludeModulePlugin([
+      {
+        // HardSource works with mini-css-extract-plugin but due to how
+        // mini-css emits assets, assets are not emitted on repeated builds with
+        // mini-css and hard-source together. Ignoring the mini-css loader
+        // modules, but not the other css loader modules, excludes the modules
+        // that mini-css needs rebuilt to output assets every time.
+        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
+      }
+    ])
   ]
 };

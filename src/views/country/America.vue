@@ -5,8 +5,9 @@
 </template>
 
 <script>
-var bbb = new Promise();
-
+var bbb = new Promise((resolve, reject) => {
+  resolve();
+});
 export default {
   name: 'America',
   props: {

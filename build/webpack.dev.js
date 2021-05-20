@@ -25,9 +25,7 @@ module.exports =  {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      t_personal: path.resolve(__dirname, '../src/views/teacher/personal'),
-      s_personal: path.resolve(__dirname, '../src/views/student/personal'),
+      'assets': path.resolve(__dirname, '../src/assets')
     }
   },
 
@@ -56,6 +54,7 @@ module.exports =  {
       {
         test: /\.css$/i,
         use: [
+          'style-loader',
           'css-loader'
         ]
       },

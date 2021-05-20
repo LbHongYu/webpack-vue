@@ -14,7 +14,9 @@
 </template>
 
 <script>
-
+var ddd = new Promise((resolve, reject) => {
+  resolve();
+});
 export default {
   name: 'country',
   data () {
