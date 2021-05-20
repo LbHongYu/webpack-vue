@@ -10,14 +10,19 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const PreloadPlugin = require('@vue/preload-webpack-plugin')
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-var HardSourcePlugin = require('hard-source-webpack-plugin');
+const HardSourcePlugin = require('hard-source-webpack-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
 module.exports =  {
   mode: 'production',
@@ -27,14 +32,14 @@ module.exports =  {
   stats: 'errors-only',
 
   entry: {
-    index: path.resolve(__dirname, '../src/index.js'),
+    app: path.resolve(__dirname, '../src/main.js'),
   },
 
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, '../webpack-vue'),
     /* NOTE: 使用了 NamedChunksPlugin 利用 hash 做缓存 */
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
 
   resolve: {
@@ -43,7 +48,13 @@ module.exports =  {
       'assets': path.resolve(__dirname, '../src/assets'),
       t_personal: path.resolve(__dirname, '../src/views/teacher/personal'),
       s_personal: path.resolve(__dirname, '../src/views/student/personal'),
-    }
+    },
+
+    extensions: [
+      '.js',
+      '.vue',
+      '.json'
+    ]
   },
 
   module: {
@@ -94,19 +105,14 @@ module.exports =  {
           }
         ]
       },
+
       {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        test: /\.(svg)(\?.*)?$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 4096,
-              fallback: {
-                loader: 'file-loader',
-                options: {
-                  name: 'media/[name].[hash:8].[ext]'
-                }
-              }
+              name: 'img/[name].[hash:8].[ext]'
             }
           }
         ]
@@ -123,6 +129,24 @@ module.exports =  {
                 loader: 'file-loader',
                 options: {
                   name: 'fonts/[name].[hash:8].[ext]'
+                }
+              }
+            }
+          }
+        ]
+      },
+
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[hash:8].[ext]'
                 }
               }
             }
@@ -218,6 +242,29 @@ module.exports =  {
       }
     }),
 
+    new PreloadPlugin({
+      rel: 'preload',
+      as(entry) {
+        if (/\.css$/.test(entry)) return 'style';
+        if (/\.woff$/.test(entry)) return 'font';
+        if (/\.(png|jpg|jpeg|gif)$/.test(entry)) return 'image';
+        return 'script';
+      },
+
+      include: 'initial',
+      fileBlacklist: [
+        /\.map$/,
+        /hot-update\.js$/
+      ]
+    }),
+
+    new PreloadPlugin(
+      {
+        rel: 'prefetch',
+        include: 'asyncChunks'
+      }
+    ),
+
     // 抽离CSS 文件,并使用 contenthash 命名，然后打包的文件放在css文件中
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
@@ -248,6 +295,20 @@ module.exports =  {
         // that mini-css needs rebuilt to output assets every time.
         test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
       }
-    ])
+    ]),
+
+    new CopyWebpackPlugin(
+      [{
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../online-course-platform'),
+        toType: 'dir',
+        ignore: [
+          'index.html',
+          '.DS_Store'
+        ]
+      }]
+    ),
+
+    new SpeedMeasurePlugin()
   ]
 };

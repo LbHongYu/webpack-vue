@@ -178,6 +178,18 @@
   添加 `cache-loader`(缓存)、`thread-loader`(多进程打包)
 
 
+2020/05/21
+  1. 添加 `output.publicPath`
+  2. `SpeedMeasurePlugin` 测试打包速度
+  3. `CopyWebpackPlugin` 将个别文件或整个目录复制到构建目录
+  4. `PreloadPlugin` 异步加载的模块使用 `prefetch`
+  TODO:
+    在 templaet 中使用别名引入图片资源`<img src="~@/assets/img/file.png">`
+    压缩没有奏效
+
+
+
+
 
 
 
